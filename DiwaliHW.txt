@@ -1,0 +1,146 @@
+Although i have not done so much as i was expecting during breaks 
+but yet i have did as much i can
+
+here i am giving a short description of topocs that i learned
+first of all i studied about algorithms lms  that were shared in the group viz
+wall follower, dijkstra , flood fill algorithm , DFA , BFA
+i cant share notes bcz  i hadnt make 
+  
+then i studied PID controller here are its notes that i have made
+BASIC UNDERSTANDING 
+
+ 
+
+1.A PID controller is an algorithm. 
+
+2.it is a feedback controller. 
+
+3.it is deployed where we want system should give consistently a particular output. 
+
+for ex- In a line following bot we want that it should consistently remain on the line so we can deploy PID Controller algorithm in its code 
+
+4.Proportional-Integral-Derivative controller 
+
+ 
+
+ 
+
+ 
+
+ 
+
+HOW IT WORKS? 
+
+ 
+
+1 .Initially it was only a proportional controller because  
+
+The idea of the "next input being a multiple of the error" is a direct translation of the principle: The correction should be in proportion to how big the mistake is. 
+
+ 
+
+2.But if it is only a proportional controller then steady state error will come  
+so we need to add integral term  
+The phenomenon of steady-state error (or offset) in a Proportional (P) controller will happen almost every time for a common class of systems, but it does not occur in all cases. 
+But we want a universal controller so we need to resolve this 
+ 
+3.Why do we choose integral as our solution? 
+
+Integral part  solves the steady-state error problem by essentially giving the controller a memory and teaching it what the constant disturbance  is. 
+
+THIS INTEGRAL PART does only one job that is add the term (Ki)(integral of error with respect to time) 
+
+Property of this term is that is keeps on increase till e>0 , keeps on dec till e<0 and remains constant  
+when e=0  
+for ex- till temp reaches 24.5DC the I term keeps on increase, at 24.5DC error would remain over some time 
+but then this I part will increase output hence reducing error 
+now two possibilities 1.it's value exactly matches with disturbance hence setpoint achieved  
+
+2.it's value is greater so then its value will start dec and this will keep on oscillating around setpoint  
+like damped oscillations till it achieves setpoint 
+ 
+
+ 
+
+4.Why steady state error occurs? 
+
+The steady-state error is the result of the proportional controller attempting to counteract a persistent external disturbance {basically due to external disturbance}. 
+
+ If there were no  disturbance (e.g. no friction, no heat loss, no gravity)  the Proportional controller would often drive the error to zero and stay there. 
+
+ To counteract the constant disturbance , the controller needs to output a constant, non-zero Control Variable 
+
+For ex-A room heater is set to maintain room temp at 25DC but at 24.5DC the input variable 
+
+acquires such value which Is equal to heat loss due to some openings thus  making no change in  
+process variable hence no change in error hence no change anywhere thus steady state achieved  
+but yet error is not zero this is called steady state error  
+
+ 
+
+5.Problem With PI controller  
+
+Problem is that PI Controller can eventually take system to steady state but it may took  
+large time due to overshooting so we have to add something that can predict the future  
+and control the output power accordingly 
+
+Future basically means we have to add a term that contains slope of error vs time curve  
+so that it rate of change can be controlled  
+
+ 
+
+6.HOW DERIVATIVE TERM WORKS ? 
+
+Now assume there is overshoot going to occur  
+So in graph of error vs time the error will be approaching to zero very fast 
+hence slope will be negative and much more steeper  
+
+If we add its positive multiple to power output then it will dec power 
+output hence error will dec at a slower rate hence slope will dec 
+hence overshoot will be avoided 
+it damps osci 
+7.WHY EACH TERM {ERROR,INTEGRAL,DERIVATIVE} IS MULTIPLIED WITH A CONSTANT ? 
+
+This is basically called tuning of PID Controller which can be both manual as well  
+as automatically  
+it is  just setting how much each of these terms should contribute to controlled variable 
+
+These constants are called tuning constants (gains) 
+These are found through trial and error  
+
+ 
+
+8.SO FINAL EQUATION AND FLOW CHART IS  
+
+ 
+
+
+ 
+
+ 
+
+9.WHAT IS CODE FOR A PID CONTROLLER? 
+
+The Basic structure is  
+
+ 
+part I – defining variables and constants(gains)   
+
+ 
+
+Part II - writing main mechanism  
+
+Step1- Calculate Time Interval {The time interval is the execution time—the time it takes for the microcontroller to complete one full cycle of the control loop} 
+
+Step2- Measure and Calculate Error  
+
+Step3- Calculate the PID Components  
+
+Step4-Sum the Components to get the Final Adjustment   
+
+Step5-Apply Control to Actuators {means giving what we generated} 
+
+Step6-Store Current Error for Next Cycle
+
+
+next i learened about diff protocols and some simple basics about motor driver
