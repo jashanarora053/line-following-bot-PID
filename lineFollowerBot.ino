@@ -57,6 +57,10 @@ delay(1000); //wait for setting the bot on position
 }  
 
 void loop() {  
+error = calculateError();
+calculatePID();
+controlMotors();
+lastError = error;
 
 int calculateError() {  
 // Read sensor values then accordong to diff cases  
